@@ -1,5 +1,9 @@
 
-namespace Hiroki{
+namespace Hiroki
+{
+    /// <summary>
+    /// ディスプレイについてのデータ
+    /// <summary>
     public class DisplayData
     {
         public int frontPanel;
@@ -7,6 +11,6 @@ namespace Hiroki{
         public int rightPanel;
         public int backPanel;
         public int topPanel;
-        //アスペクト比、解像度なんかを追加してもいいかも
+        //後々、アスペクト比、解像度なんかを追加してもいいかも
     }
 }

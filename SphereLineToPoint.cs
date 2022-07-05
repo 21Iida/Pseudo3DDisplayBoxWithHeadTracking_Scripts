@@ -4,8 +4,12 @@ using UnityEngine;
 
 namespace Hiroki
 {
-    //球体外にある点から球体に接線を2本引きます
-    //そのあと接線の角度を返してカメラのFoVに使用します
+    /// <summary>
+    /// カメラのFoV値を設定したい
+    /// まず、描画したい空間を覆える球体を設定します
+    /// そして球体外にある点(ユーザーの視点)から球体に接線を2本引きます
+    /// そのあと接線の角度を返してカメラのFoVに使用します
+    /// <summary>
     public class SphereLineToPoint
     {
         //求める接点ふたつ
@@ -32,8 +36,6 @@ namespace Hiroki
                 ContactPoints[1].y = r * ((pPp.y * r + pPp.x * xyrPowSqrt) / xyPow);
                 ContactPoints[1].z = 0;
 
-                //CoordinateReverse(ref pPp, ref tSp);
-
                 return Vector3.SignedAngle(ContactPoints[0] - pPp, ContactPoints[1] - pPp,Vector3.forward);
             }
             else
@@ -41,7 +43,6 @@ namespace Hiroki
                 Debug.Log("プレイヤーがスフィアの内側にいます");
                 return maxDegree;
             }
-            //CoordinateReverse(ref pPp, ref tSp);
         }
 
         //ワールド座標から扱いやすい座標系に変換させる

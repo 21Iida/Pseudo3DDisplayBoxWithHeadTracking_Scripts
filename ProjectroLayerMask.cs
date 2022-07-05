@@ -2,52 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//プロジェクターの位置によってディスプレイの表示をオンオフすることで描画負荷を抑えます
-public class ProjectroLayerMask : MonoBehaviour
+namespace Hiroki
 {
-    Projector projector;
-    LayerMask layerMask;
-    [SerializeField] Transform worldCenter;
-
-    void Start()
+    //プロジェクターの位置によってディスプレイの表示をオンオフすることで描画負荷を抑えます
+    public class ProjectroLayerMask : MonoBehaviour
     {
-        projector = this.GetComponent<Projector>();
-        layerMask = projector.ignoreLayers;
-    }
+        Projector projector;
+        LayerMask layerMask;
+        [SerializeField] Transform worldCenter;
 
-    void Update()
-    {
-        if(this.transform.position.x > 0)
+        void Start()
         {
-            layerMask |= 1 << LayerMask.NameToLayer("PlaneRight");
-            layerMask &= ~(1 << LayerMask.NameToLayer("PlaneLeft"));
-        }
-        else
-        {
-            layerMask |= 1 << LayerMask.NameToLayer("PlaneLeft");
-            layerMask &= ~(1 << LayerMask.NameToLayer("PlaneRight"));
+            projector = this.GetComponent<Projector>();
+            layerMask = projector.ignoreLayers;
         }
 
-        if(this.transform.position.z > 0)
+        void Update()
         {
-            layerMask |= 1 << LayerMask.NameToLayer("PlaneFront");
-            layerMask &= ~(1 << LayerMask.NameToLayer("PlaneBack"));
-        }
-        else
-        {
-            layerMask |= 1 << LayerMask.NameToLayer("PlaneBack");
-            layerMask &= ~(1 << LayerMask.NameToLayer("PlaneFront"));
-        }
+            if(this.transform.position.x > 0)
+            {
+                layerMask |= 1 << LayerMask.NameToLayer("PlaneRight");
+                layerMask &= ~(1 << LayerMask.NameToLayer("PlaneLeft"));
+            }
+            else
+            {
+                layerMask |= 1 << LayerMask.NameToLayer("PlaneLeft");
+                layerMask &= ~(1 << LayerMask.NameToLayer("PlaneRight"));
+            }
 
-        if(this.transform.position.y < worldCenter.position.y)
-        {
-            layerMask |= 1 << LayerMask.NameToLayer("PlaneTop");
-        }
-        else
-        {
-            layerMask &= ~(1 << LayerMask.NameToLayer("PlaneTop"));
-        }
+            if(this.transform.position.z > 0)
+            {
+                layerMask |= 1 << LayerMask.NameToLayer("PlaneFront");
+                layerMask &= ~(1 << LayerMask.NameToLayer("PlaneBack"));
+            }
+            else
+            {
+                layerMask |= 1 << LayerMask.NameToLayer("PlaneBack");
+                layerMask &= ~(1 << LayerMask.NameToLayer("PlaneFront"));
+            }
 
-        projector.ignoreLayers = layerMask;
+            if(this.transform.position.y < worldCenter.position.y)
+            {
+                layerMask |= 1 << LayerMask.NameToLayer("PlaneTop");
+            }
+            else
+            {
+                layerMask &= ~(1 << LayerMask.NameToLayer("PlaneTop"));
+            }
+
+            projector.ignoreLayers = layerMask;
+        }
     }
 }

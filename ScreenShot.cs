@@ -2,21 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//未完成
-//複数ディスプレイに対応できていない
-//レンダーテクスチャ挟めば複数取れるらしい
-public class ScreenShot : MonoBehaviour
+namespace Hiroki
 {
-    string filePath;
-    string fileName = "ScreenShot.png";
-    private void Start() {
-        filePath = Application.dataPath;
-    }
-    void Update()
+    /// <summary>
+    /// 説明用のスクリーンショットを撮影したい
+    /// 未完成
+    /// 複数ディスプレイに対応できていない
+    /// レンダーテクスチャ挟めば複数取れるらしい
+    /// <summary>
+    public class ScreenShot : MonoBehaviour
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        string filePath;
+        string fileName = "ScreenShot.png";
+        private void Start() {
+            filePath = Application.dataPath;
+        }
+        void Update()
         {
-            ScreenCapture.CaptureScreenshot(filePath + "/" + fileName);
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                ScreenCapture.CaptureScreenshot(filePath + "/" + fileName);
+            }
         }
     }
 }

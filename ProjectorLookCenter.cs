@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectorLookCenter : MonoBehaviour
+namespace Hiroki
 {
-    [SerializeField] GameObject WorldCenter;
-
-    void LateUpdate()
+    public class ProjectorLookCenter : MonoBehaviour
     {
-        this.transform.LookAt(WorldCenter.transform);
+        [SerializeField] GameObject WorldCenter;
+
+        void LateUpdate()
+        {
+            this.transform.LookAt(WorldCenter.transform);
+        }
     }
 }

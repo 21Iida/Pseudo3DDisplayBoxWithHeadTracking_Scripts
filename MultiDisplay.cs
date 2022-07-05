@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiDisplay : MonoBehaviour
+namespace Hiroki
 {
-    [SerializeField] int displayCount = 5;
-    void Start()
+    public class MultiDisplay : MonoBehaviour
     {
-        for(int i = 0; i < displayCount; i++)
+        [SerializeField] int displayCount = 5;
+        void Start()
         {
-            Display.displays[i].Activate();
+            for(int i = 0; i < displayCount; i++)
+            {
+                Display.displays[i].Activate();
+            }
         }
-    }
 
+    }
 }
